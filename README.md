@@ -12,8 +12,8 @@
 
 - Registrering och inloggning med JWT
 - Skapa och visa forumtrådar
-- Användarroller (user/admin)
 - Minimal frontend med `public/`-katalog
+- All frontend Javascript är inline
 
 ---
 
