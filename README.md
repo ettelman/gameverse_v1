@@ -53,12 +53,12 @@ Vid trådskapande används username från klienten istället för att hämta det
 
 ---
 
-##  Kom igång
+## Kom igång
 
 ### Kör med Node.js (lokalt)
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/ettelman/gameverse_v1
 cd gameverse
 npm install
 node server.js
@@ -68,6 +68,8 @@ Gå in på http://localhost:3300
 ### Kör med Docker
 
 ```Bash
+git clone https://github.com/ettelman/gameverse_v1
+cd gameverse
 docker build -t gameverse .
 docker run -p 3300:3300 gameverse
 Gå in på http://localhost:3300
