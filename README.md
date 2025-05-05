@@ -51,6 +51,11 @@ Det finns inget skydd mot upprepade inloggningsförsök – ingen rate limiting,
 Vid trådskapande används username från klienten istället för att hämta det från den autentiserade JWT-token. Det möjliggör att t.ex. skapa trådar som annan användare.
 </details>
 
+<details> <summary> <strong>XSS</strong></summary>
+
+Det finns i princip ingen sanering av user generated content.
+</details>
+
 ---
 
 ## Kom igång
