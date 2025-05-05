@@ -1,6 +1,6 @@
 # 🎮 GameVerse v1 – Lär dig webbsårbarheter
 
-**GameVerse v1** är en sårbar testapplikation utvecklad i Node.js/Express med SQLite, skapad i utbildningssyfte för nybörjare inom webb- och applikationssäkerhet. Syftet är att låta elever öva upptäckt och exploatering av vanliga sårbarheter i en säker miljö.
+**GameVerse v1** är en sårbar testapplikation utvecklad i Node.js/Express med SQLite. Gameverse är skapad i utbildningssyfte för nybörjare inom webb- och applikationssäkerhet. Syftet är att låta elever öva upptäckt och exploatering av vanliga sårbarheter i en säker miljö.
 
 ![alt text](captura-2025-05-05-1746474089.png)
 
