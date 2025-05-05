@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameVerse Auth - Registrera & Logga in</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --color-hero-bg: #dcd5fa;
+        --color-form-bg: #ffe7c7;
+        --color-text: #2c2c2c;
+        --color-accent: #ffc0cb;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: var(--color-hero-bg);
+        color: var(--color-text);
+        overflow-x: hidden;
+      }
+      .navbar {
+        background: transparent;
+        box-shadow: none;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--color-text) !important;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      }
+      .nav-link {
+        color: var(--color-text) !important;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: var(--color-accent) !important;
+      }
+      .hero {
+        position: relative;
+        height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("forum.jpg") no-repeat center center;
+        background-size: cover;
+        overflow: hidden;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 15px;
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #fff;
+        text-shadow:
+          0 0 10px rgba(0, 0, 0, 0.5),
+          4px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 10px;
+      }
+      .hero-content p {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .form-container {
+        background: var(--color-form-bg);
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .form-container h2 {
+        font-size: 1.75rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .btn-primary {
+        background-color: var(--color-accent);
+        border: none;
+        color: var(--color-text);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primary:hover {
+        background-color: #ff99b8;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      }
+      /* Meddelandekontainrar */
+      #msg-register,
+      #msg-login {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        background: #ffffffcc;
+        text-align: center;
+        padding: 20px;
+        color: var(--color-text);
+        font-size: 0.95rem;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      #user-status {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInDown" href="#"
+          >GameVerse</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse animate__animated animate__fadeInDown"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Hem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="forum.html">Forum</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="hero-content animate__animated animate__fadeIn">
+        <h1>Registrera & Logga in</h1>
+        <p>
+          Bli en del av GameVerse – registrera dig eller logga in för att delta
+          i äventyren!
+        </p>
+      </div>
+    </header>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-container animate__animated animate__fadeInLeft">
+            <h2>Registrera dig</h2>
+            <div id="msg-register"></div>
+            <form id="register-form">
+              <div class="mb-3">
+                <label for="registerUsername" class="form-label"
+                  >Användarnamn</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="registerUsername"
+                  placeholder="Ange ditt användarnamn"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword" class="form-label"
+                  >Lösenord</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="registerPassword"
+                  placeholder="Ange ditt lösenord"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Registrera
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-container animate__animated animate__fadeInRight">
+            <h2>Logga in</h2>
+            <div id="msg-login"></div>
+            <form id="login-form">
+              <div class="mb-3">
+                <label for="loginUsername" class="form-label"
+                  >Användarnamn</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="loginUsername"
+                  placeholder="Ange ditt användarnamn"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Lösenord</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="loginPassword"
+                  placeholder="Ange ditt lösenord"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Logga in
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p class="mb-0">&copy; 2025 GameVerse. Alla rättigheter förbehållna.</p>
+        <p class="mb-0">
+          Följ oss på sociala medier för senaste nytt och fler magiska äventyr!
+        </p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("registerUsername").value;
+          const password = document.getElementById("registerPassword").value;
+          fetch("/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const msgEl = document.getElementById("msg-register");
+              registerForm = document.getElementById("register-form");
+              registerForm.reset();
+              if (data.error) {
+                msgEl.textContent = data.error;
+                msgEl.style.color = "red";
+              } else {
+                msgEl.textContent = data.message;
+                msgEl.style.color = "green";
+              }
+            })
+            .catch((error) => {
+              console.error("Fel:", error);
+            });
+        });
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const username = document.getElementById("loginUsername").value;
+          const password = document.getElementById("loginPassword").value;
+          fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const msgEl = document.getElementById("msg-login");
+              loginForm = document.getElementById("login-form");
+              loginForm.reset();
+              if (data.token) {
+                localStorage.setItem("jwtToken", data.token);
+                msgEl.textContent = "Inloggning lyckades!";
+                msgEl.style.color = "green";
+                setTimeout(() => {
+                  window.location.href = "/";
+                }, 1500);
+              } else {
+                msgEl.textContent = data.message || data.error;
+                msgEl.style.color = "red";
+              }
+            })
+            .catch((error) => {
+              console.error("Fel:", error);
+            });
+        });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const jwtToken = localStorage.getItem("jwtToken");
+        if (jwtToken) {
+          window.location.href = "admin.html";
+        }
+      });
+    </script>
+  </body>
+</html>

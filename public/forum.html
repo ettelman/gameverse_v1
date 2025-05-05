@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameVerse Forum</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --color-hero-bg: #dcd5fa;
+        --color-forum-bg: #ffe7c7;
+        --color-about-bg: #cdeaf5;
+        --color-community-bg: #cff0cf;
+        --color-text: #2c2c2c;
+        --color-accent: #ffc0cb;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        color: var(--color-text);
+        background: var(--color-hero-bg);
+        overflow-x: hidden;
+      }
+      .navbar {
+        background: transparent;
+        box-shadow: none;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--color-text) !important;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      }
+      .nav-link {
+        color: var(--color-text) !important;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: var(--color-accent) !important;
+      }
+      .hero {
+        position: relative;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("forum.jpg") no-repeat center center;
+        background-size: cover;
+        overflow: hidden;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 15px;
+      }
+      .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #fff;
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.5),
+          4px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+      .hero-content p {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .btn-primary {
+        background-color: var(--color-accent);
+        border: none;
+        color: var(--color-text);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primary:hover {
+        background-color: #ff99b8;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      }
+      .forum-wave {
+        position: relative;
+        width: 100%;
+        height: 80px;
+        background: var(--color-forum-bg);
+        clip-path: ellipse(70% 100% at 50% 0%);
+        margin-top: -5px;
+      }
+      .decorative-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      .circle-1 {
+        width: 80px;
+        height: 80px;
+        top: 5%;
+        left: 2%;
+      }
+      .circle-2 {
+        width: 120px;
+        height: 120px;
+        bottom: 5%;
+        right: 2%;
+      }
+      .forum-section {
+        position: relative;
+        background: var(--color-forum-bg);
+        padding: 60px 0;
+      }
+      .forum-section .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      .thread-card {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        position: relative;
+        z-index: 2;
+      }
+      .thread-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .thread-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .thread-meta {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 10px;
+      }
+      .new-thread-form {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .new-thread-form h2 {
+        font-size: 1.75rem;
+        margin-bottom: 20px;
+      }
+      .section-wave {
+        position: relative;
+        width: 100%;
+        height: 80px;
+        background: var(--color-about-bg);
+        clip-path: polygon(0 100%, 100% 0, 100% 100%);
+        margin-bottom: -5px;
+      }
+      footer {
+        background: #ffffffcc;
+        text-align: center;
+        padding: 20px;
+        color: var(--color-text);
+        font-size: 0.95rem;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      #msg {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        color: var(--color-text);
+      }
+
+      #user-status {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInDown" href="#"
+          >GameVerse</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse animate__animated animate__fadeInDown"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Hem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="forum.html">Forum</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">|</a>
+            </li>
+          </ul>
+          <div id="user-status">Laddar in...</div>
+        </div>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="hero-content animate__animated animate__fadeIn">
+        <h1>GameVerse Forum</h1>
+        <p>Diskutera, dela och skapa nya äventyr</p>
+        <a
+          href="#new-thread"
+          class="btn btn-primary btn-lg animate__animated animate__pulse"
+          >Starta en ny tråd</a
+        >
+      </div>
+    </header>
+    <div class="forum-wave"></div>
+    <section class="forum-section">
+      <div class="decorative-circle circle-1"></div>
+      <div class="decorative-circle circle-2"></div>
+      <h2 class="section-title animate__animated animate__fadeInUp">Trådar</h2>
+      <div class="text-center mb-4 fw-bold" id="thread-message"></div>
+      <div class="container" id="threads-container"></div>
+    </section>
+    <section class="forum-section" id="new-thread">
+      <div class="container">
+        <div id="msg"></div>
+        <div class="new-thread-form" id="new-thread-form">
+          <h2>Starta en ny tråd</h2>
+          <form id="new-thread-form-el">
+            <input id="username" type="hidden" value="" />
+            <div class="mb-3">
+              <label for="threadTitle" class="form-label">Titel</label>
+              <input
+                type="text"
+                class="form-control"
+                id="threadTitle"
+                placeholder="Ange trådens titel"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="threadContent" class="form-label">Innehåll</label>
+              <textarea
+                class="form-control"
+                id="threadContent"
+                rows="4"
+                placeholder="Skriv din tråd här"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Skapa tråd</button>
+          </form>
+        </div>
+        <div
+          id="login-message"
+          style="
+            display: none;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 20px;
+          "
+        >
+          <p>Vänligen logga in för att starta en ny tråd.</p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p class="mb-0">&copy; 2025 GameVerse. Alla rättigheter förbehållna.</p>
+      <p class="mb-0">
+        Följ oss på sociala medier för senaste nytt och fler magiska äventyr!
+      </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const jwtToken = localStorage.getItem("jwtToken");
+        let currentUser = "";
+        let selectedThreadId = null;
+
+        const modal = new bootstrap.Modal(
+          document.getElementById("deleteConfirmModal"),
+        );
+        const confirmBtn = document.getElementById("confirmDeleteBtn");
+
+        // Uppdatera användarnamnsfält och statusfält
+        function updateUserStatus(user) {
+          currentUser = user.username;
+          document.getElementById("username").value = currentUser;
+          document.getElementById("user-status").innerHTML =
+            `Inloggad som <a href='admin.html'>${currentUser}</a>`;
+        }
+
+        // Visa gästvy
+        function showLoggedOutView() {
+          document.getElementById("new-thread-form").style.display = "none";
+          document.getElementById("login-message").style.display = "block";
+          document.getElementById("user-status").innerHTML =
+            "<a class='nav-link' href='user.html'>Logga in</a>";
+        }
+
+        // Inget token = gäst
+        if (!jwtToken) {
+          showLoggedOutView();
+          return;
+        }
+
+        // Hämta användardata
+        fetch("/me", {
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (!data.loggedIn) {
+              showLoggedOutView();
+              return;
+            }
+
+            updateUserStatus(data.user);
+            document.getElementById("new-thread-form").style.display = "block";
+            document.getElementById("login-message").style.display = "none";
+
+            // Hämta trådar
+            fetch("/threads")
+              .then((res) => res.json())
+              .then((data) => {
+                const container = document.getElementById("threads-container");
+                container.innerHTML = "";
+                data.threads.forEach((thread) => {
+                  const isOwner = thread.username === currentUser;
+                  const card = document.createElement("div");
+                  card.className =
+                    "thread-card animate__animated animate__zoomIn";
+                  card.innerHTML = `
+                <div class="thread-title">${thread.title}</div>
+                <div class="thread-meta">Startad av ${thread.username} • ${new Date(thread.created_at).toLocaleString()}</div>
+                <div class="thread-excerpt">${thread.content}</div>
+                ${
+                  isOwner
+                    ? `<button class="btn btn-sm btn-danger mt-2 delete-thread-btn" data-id="${thread.id}">Ta bort</button>`
+                    : ""
+                }
+              `;
+                  container.appendChild(card);
+                });
+
+                // Lägg till event listeners för "Ta bort"
+                document
+                  .querySelectorAll(".delete-thread-btn")
+                  .forEach((btn) => {
+                    btn.addEventListener("click", function () {
+                      selectedThreadId = this.dataset.id;
+                      modal.show();
+                    });
+                  });
+              });
+          })
+          .catch((err) => {
+            console.error("Kunde inte verifiera token:", err);
+            showLoggedOutView();
+          });
+
+        // Bekräfta borttagning
+        confirmBtn.addEventListener("click", () => {
+          if (!selectedThreadId) return;
+          fetch(`/threads/${selectedThreadId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: "Bearer " + jwtToken,
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              modal.hide();
+              selectedThreadId = null;
+              setTimeout(() => location.reload(), 500);
+            })
+            .catch((err) => {
+              alert("Fel vid borttagning: " + err);
+            });
+        });
+
+        // Skapa ny tråd
+        document
+          .getElementById("new-thread-form-el")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+            const title = document.getElementById("threadTitle").value;
+            const content = document.getElementById("threadContent").value;
+            const username = document.getElementById("username").value;
+
+            fetch("/threads", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + jwtToken,
+              },
+              body: JSON.stringify({ title, content, username }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                const msg = document.getElementById("msg");
+                msg.textContent = data.message || data.error;
+                msg.style.color = data.error ? "red" : "green";
+                if (!data.error) {
+                  document.getElementById("new-thread-form-el").reset();
+                  setTimeout(() => location.reload(), 1000);
+                }
+              })
+              .catch((err) => console.error("Fel vid trådskapande:", err));
+          });
+      });
+    </script>
+
+    <div
+      class="modal fade"
+      id="deleteConfirmModal"
+      tabindex="-1"
+      aria-labelledby="deleteConfirmLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirmLabel">
+              Bekräfta borttagning
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Stäng"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Är du säker på att du vill ta bort denna tråd?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Avbryt
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+              Ja, ta bort
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

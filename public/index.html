@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameVerse - Din Portal till Fantastiska Spel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      :root {
+        --color-hero-bg: #dcd5fa;
+        --color-games-bg: #ffe7c7;
+        --color-about-bg: #cdeaf5;
+        --color-community-bg: #cff0cf;
+        --color-text: #2c2c2c;
+        --color-accent: #ffc0cb;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        color: var(--color-text);
+        background: var(--color-hero-bg);
+        overflow-x: hidden;
+      }
+      .navbar {
+        background: transparent;
+        box-shadow: none;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        color: var(--color-text) !important;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+      }
+      .nav-link {
+        color: var(--color-text) !important;
+        transition: color 0.3s ease;
+      }
+      .nav-link:hover {
+        color: var(--color-accent) !important;
+      }
+      .hero {
+        position: relative;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("hero.jpg") no-repeat center center;
+        background-size: cover;
+        overflow: hidden;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 15px;
+      }
+      .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #fff;
+        text-shadow:
+          0 0 10px rgba(255, 255, 255, 0.5),
+          4px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+      .hero-content p {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .btn-primary {
+        background-color: var(--color-accent);
+        border: none;
+        color: var(--color-text);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primary:hover {
+        background-color: #ff99b8;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      }
+      .hero-wave {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        margin-top: -5px;
+        background: var(--color-games-bg);
+        clip-path: ellipse(70% 100% at 50% 0%);
+      }
+      .decorative-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      .circle-1 {
+        width: 100px;
+        height: 100px;
+        top: 10%;
+        left: 5%;
+      }
+      .circle-2 {
+        width: 150px;
+        height: 150px;
+        bottom: 10%;
+        right: 5%;
+      }
+      .circle-3 {
+        width: 80px;
+        height: 80px;
+        top: 50%;
+        right: 15%;
+      }
+      .circle-4 {
+        width: 120px;
+        height: 120px;
+        bottom: 20%;
+        left: 10%;
+      }
+      #games {
+        position: relative;
+        background: var(--color-games-bg);
+        padding: 60px 0;
+        text-align: center;
+      }
+      #games .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+      .game-card {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        color: var(--color-text);
+        min-height: 250px;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+      }
+      .game-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .section-wave {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: var(--color-about-bg);
+        clip-path: polygon(0 100%, 100% 0, 100% 100%);
+        margin-bottom: -5px;
+      }
+      #about {
+        position: relative;
+        background: var(--color-about-bg);
+        padding: 60px 0;
+      }
+      #about .section-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+      .info-box {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .info-box h5 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+      }
+      #about p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
+      }
+      .section-wave2 {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background: var(--color-community-bg);
+        clip-path: polygon(0 0, 100% 100%, 0 100%);
+        margin-top: -5px;
+        margin-bottom: -5px;
+      }
+      #community {
+        position: relative;
+        background: var(--color-community-bg);
+        padding: 60px 0;
+      }
+      #community .section-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+      #community p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        position: relative;
+        z-index: 2;
+      }
+      .community-box {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      footer {
+        background: #ffffffcc;
+        text-align: center;
+        padding: 20px;
+        color: var(--color-text);
+        font-size: 0.95rem;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 2;
+      }
+      #user-status {
+        color: red;
+      }
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+      .team {
+        max-width: 800px;
+        border-radius: 5%;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInDown" href="#"
+          >GameVerse</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse animate__animated animate__fadeInDown"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Hem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#games">Spel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Om oss</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#community">Community</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/forum.html">Forum</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">|</a>
+            </li>
+          </ul>
+          <div id="user-status">Laddar in...</div>
+        </div>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="hero-content animate__animated animate__fadeIn">
+        <h1>Välkommen till GameVerse</h1>
+        <p>Fantasifulla Äventyr & Färgsprakande Upplevelser</p>
+        <a
+          href="#games"
+          class="btn btn-primary btn-lg animate__animated animate__pulse"
+          >Utforska Spelen</a
+        >
+      </div>
+    </header>
+    <div class="hero-wave"></div>
+    <section id="games">
+      <div class="decorative-circle circle-1"></div>
+      <div class="decorative-circle circle-2"></div>
+      <div class="decorative-circle circle-3"></div>
+      <h2 class="section-title animate__animated animate__fadeInUp">
+        Våra Spel
+      </h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card game-card animate__animated animate__zoomIn">
+              <img
+                src="game1.jpg"
+                alt="Candy Kingdom Quest"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Space adventures</h5>
+                <p class="card-text">
+                  Utforska färgsprakande galaxer, samla stjärnkristaller och
+                  undvik svarta hål i detta intergalaktiska äventyr fyllt av
+                  vänliga aliens, mystiska planeter och episka rymdstrider.
+                  <br />
+                </p>
+                <a href="#" class="btn btn-outline-dark">Läs mer</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div
+              class="card game-card animate__animated animate__zoomIn"
+              style="animation-delay: 0.2s"
+            >
+              <img src="game2.jpg" alt="Cloud Jumper" class="card-img-top" />
+              <div class="card-body">
+                <h5 class="card-title">Dragon killer</h5>
+                <p class="card-text">
+                  Svinga ditt svärd och kasta magiska eldbollar medan du kämpar
+                  dig genom lavagrottor och flygande fästen i detta actionfyllda
+                  äventyr där varje drake är ett nytt hot.
+                </p>
+                <a href="#" class="btn btn-outline-dark">Läs mer</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div
+              class="card game-card animate__animated animate__zoomIn"
+              style="animation-delay: 0.4s"
+            >
+              <img
+                src="game3.jpg"
+                alt="Fairy Tale Adventures"
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Fairy Tale Adventures</h5>
+                <p class="card-text">
+                  Kliv in i en sagovärld där talande djur, förtrollade skogar
+                  och glittrande slott väntar. Lös gåtor, hjälp magiska väsen
+                  och forma din egen berättelse i detta fantastiska äventyr.
+                </p>
+                <a href="#" class="btn btn-outline-dark">Läs mer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-wave"></div>
+    <section id="about">
+      <div class="decorative-circle circle-4"></div>
+      <h2 class="section-title animate__animated animate__fadeInUp">
+        Om GameVerse
+      </h2>
+      <div class="container">
+        <p class="lead text-center animate__animated animate__fadeIn">
+          GameVerse älskar färg, fantasi och äventyr! Vi vill ge spelare i alla
+          åldrar möjligheten att kliva in i en värld av drömmar och magi.
+        </p>
+        <div class="row mt-5">
+          <div class="col-md-6 animate__animated animate__fadeInLeft">
+            <div class="info-box">
+              <h5>Vår Vision</h5>
+              <p>
+                Vi strävar efter att skapa uppslukande upplevelser som kittlar
+                fantasin och lockar fram barnet inom oss alla. Varje spel är en
+                chans att upptäcka en ny värld av äventyr.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 animate__animated animate__fadeInRight">
+            <div class="info-box">
+              <h5>Vårt Team</h5>
+              <p>
+                Bakom GameVerse arbetar en brokig skara konstnärer, utvecklare
+                och berättare. Tillsammans kombinerar vi passionen för spel med
+                kreativitet och en önskan att skapa magi.
+              </p>
+            </div>
+          </div>
+          <img src="team.jpg" class="team" alt="Vårt team" />
+        </div>
+      </div>
+    </section>
+    <div class="section-wave2"></div>
+    <section id="community">
+      <h2 class="section-title animate__animated animate__fadeInUp">
+        Gå med i Vår Community
+      </h2>
+      <div class="container">
+        <p class="lead text-center animate__animated animate__fadeIn">
+          Dela dina färgglada ögonblick, starta egna spelgrupper och bygg
+          långvariga vänskaper i en värld fylld av magi och äventyr.
+        </p>
+        <div class="row mt-5">
+          <div class="col-md-6 animate__animated animate__fadeInLeft">
+            <div class="community-box">
+              <h5>Forum & Diskussioner</h5>
+              <p>
+                Delta i våra vänliga forum där du kan dela tips, strategier och
+                dina mest fantastiska spelögonblick med likasinnade.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 animate__animated animate__fadeInRight">
+            <div class="community-box">
+              <h5>Event & Turneringar</h5>
+              <p>
+                Utmana andra spelare i spännande turneringar, vinn fina priser
+                och lås upp unika belöningar i våra regelbundna event.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p class="mb-0">&copy; 2025 GameVerse. Alla rättigheter förbehållna.</p>
+      <p class="mb-0">
+        Följ oss på sociala medier för senaste nytt och fler magiska äventyr!
+      </p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const jwtToken = localStorage.getItem("jwtToken");
+        if (!jwtToken) {
+          document.getElementById("user-status").innerHTML =
+            "<a class='nav-link' href='user.html'>Logga in</a>";
+          return;
+        }
+        fetch("/me", {
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.loggedIn) {
+              document.getElementById("user-status").innerHTML =
+                "Inloggad som <a href='admin.html'>" +
+                data.user.username +
+                "</a>";
+            } else {
+              document.getElementById("user-status").innerHTML =
+                "<a class='nav-link' href='user.html'>Logga in</a>";
+            }
+          })
+          .catch((error) => {
+            console.error("Fel vid hämtning av inloggningsstatus:", error);
+            document.getElementById("user-status").innerHTML =
+              "<a class='nav-link' href='user.html'>Logga in</a>";
+          });
+      });
+    </script>
+  </body>
+</html>
